@@ -34,7 +34,7 @@ public class EmailGeneratorService {
 		String prompt = buildPrompt(emailRequestDto);
 		String responseText = callGemini(prompt);
 		String extractedText = extractGeminiResponse(responseText);
-		log.info("[EmailGeneratorService] [generateEmailContent] Final text: " + extractedText);
+//		log.info("[EmailGeneratorService] [generateEmailContent] Final text: " + extractedText);
 		
 		return ResponseEntity.ok().body(extractedText);
 	
@@ -83,7 +83,7 @@ public class EmailGeneratorService {
 	    prompt.append("Original Email:\n")
 	          .append(emailRequestDto.getEmailContent());
 
-	    log.info("[EmailGeneratorService] [buildPrompt] Final prompt: " + prompt.toString());
+//	    log.info("[EmailGeneratorService] [buildPrompt] Final prompt: " + prompt.toString());
 
 	    return prompt.toString();
 	}
@@ -123,7 +123,7 @@ public class EmailGeneratorService {
                     .addHeader("Content-Type", "application/json")
                     .build();
 
-            log.info("Before calling...");
+//            log.info("Before calling...");
             try (Response response = client.newCall(request).execute()) {
                 if (response.body() != null) {
                     return response.body().string();
